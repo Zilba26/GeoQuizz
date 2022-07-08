@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/quizz.css" rel="stylesheet" />
+    <link href="css/all.css" rel="stylesheet" />
+    <link href="css/all.min.css" rel="stylesheet" />
+    <title>GeoQuizz</title>
+  </head>
+  <body>
+    <div id="background">
+      <img src="img/etoiles.jpg" id="background_image" />
+    </div>
+    <div id="retour" onclick="retour()">
+      <i class="fa-solid fa-arrow-left"></i>
+    </div>
+    <section>
+      <div>
+        <div id="flag_div">
+          <img id="flag">
+        </div>
+        <input id="input_answer" type="text" oninput="autoValidation()" />
+        <div id="avancement_and_last_country">
+          <span id="avancement"></span>
+          <span id="last_country"></span>
+        </div>
+        <span id="registered_answer">Réponse déjà enregistré</span>
+        <span id="bad_answer">Mauvaise réponse</span>
+      </div>
+    </section>
+  </body>
+  <script src="js/constantes.js"></script>
+  <script src="js/quizz.js"></script>
+</html>

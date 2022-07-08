@@ -1,0 +1,96 @@
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/all.css" rel="stylesheet" />
+    <link href="css/all.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/script.js"></script>
+    <title>GeoQuizz</title>
+  </head>
+  <body>
+    <div id="background">
+      <img src="img/terre.jpg" id="background_image" />
+    </div>
+    <div id="informations" onmouseenter="document.getElementById('informations_content').style.display = 'flex'" onmouseleave="document.getElementById('informations_content').style.display = 'none'">
+      <i class="fa-solid fa-circle-info"></i>
+      <div id="informations_content">
+        <p>
+          Les pays pris en compte dans ce quizz sont les pays de l'ONU.<br>
+          Voici une liste de certains pays partiellement reconnus par les pays membres qui ne sont donc pas dans ce quizz :<br>
+          &emsp;- Îles Cook<br>
+          &emsp;- Kosovo<br>
+          &emsp;- Niue<br>
+          &emsp;- Palestine<br>
+          &emsp;- Taiwan
+        </p>
+      </div>
+    </div>
+
+
+    <section>
+      <!-- <h1>Bienvenue sur GeoQuizz</h1> -->
+      <div id="type_quizz" class="wrapper">
+        <input type="radio" name="select" id="pays_option" value="1" checked />
+        <label for="pays_option" class="option pays_option">
+          <div class="dot"></div>
+          <span>Pays</span>
+        </label>
+
+        <input type="radio" name="select" id="drapeaux_option" value="2"/>
+        <label for="drapeaux_option" class="option drapeaux_option">
+          <div class="dot"></div>
+          <span>Drapeaux</span>
+        </label>
+
+        <input type="radio" name="select" id="capitales_option" value="3"/>
+        <label for="capitales_option" class="option capitales_option">
+          <div class="dot"></div>
+          <span>Capitales</span>
+        </label>
+      </div>
+      <div id="endroit_quizz" class="wrapper">
+        <input type="radio" name="select-2" id="monde_option" checked />
+        <label for="monde_option" class="option monde_option">
+          <div class="dot"></div>
+          <span>Monde</span>
+        </label>
+
+        <input type="radio" name="select-2" id="europe_option" />
+        <label for="europe_option" class="option europe_option">
+          <div class="dot"></div>
+          <span>Europe</span>
+        </label>
+
+        <input type="radio" name="select-2" id="asie_option" />
+        <label for="asie_option" class="option asie_option">
+          <div class="dot"></div>
+          <span>Asie</span>
+        </label>
+
+        <input type="radio" name="select-2" id="afrique_option" />
+        <label for="afrique_option" class="option afrique_option">
+          <div class="dot"></div>
+          <span>Afrique</span>
+        </label>
+
+        <input type="radio" name="select-2" id="amerique_option" />
+        <label for="amerique_option" class="option amerique_option">
+          <div class="dot"></div>
+          <span>Amérique</span>
+        </label>
+
+        <input type="radio" name="select-2" id="oceanie_option" />
+        <label for="oceanie_option" class="option oceanie_option">
+          <div class="dot"></div>
+          <span>Océanie</span>
+        </label>
+      </div>
+
+      <div id="start_button">
+        <button id="start_quizz" onclick="startQuizz()">Commencer</button>
+      </div>
+    </section>
+  </body>
+</html>

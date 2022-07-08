@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,500,600,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+    font-size: 30;
+    color: blue;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#informations {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: fit-content;
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  place-items: end;
+  gap: 5px;
+}
+
+#informations_content {
+  background-color: rgba(255, 255, 255, 0.736);
+  border-radius: 8px;
+  padding: 5px;
+  display: none;
+}
+
+i {
+  color: white;
+  font-size: 50px;
+  width: fit-content;
+}
+
+p {
+  font-size: 13px;
+}
+
+label {
+    gap: 5px;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -100;
+}
+
+body {
+  overflow: hidden;
+}
+
+#background_image {
+  width: 100%;
+  height: auto;
+}
+
+section {
+  display: flex;
+  height: 100%;
+  place-items: center;
+  font-family: "Lato", sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  gap: 80px;
+}
+.wrapper {
+  display: inline-flex;
+  background: #fff;
+  height: 100px;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+}
+.wrapper .option {
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot {
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before {
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"] {
+  display: none;
+}
+#pays_option:checked:checked ~ .pays_option,
+#drapeaux_option:checked:checked ~ .drapeaux_option,
+#capitales_option:checked:checked ~ .capitales_option,
+#monde_option:checked:checked ~ .monde_option,
+#europe_option:checked:checked ~ .europe_option,
+#asie_option:checked:checked ~ .asie_option,
+#afrique_option:checked:checked ~ .afrique_option,
+#oceanie_option:checked:checked ~ .oceanie_option,
+#amerique_option:checked:checked ~ .amerique_option {
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#pays_option:checked:checked ~ .pays_option .dot,
+#drapeaux_option:checked:checked ~ .drapeaux_option .dot,
+#capitales_option:checked:checked ~ .capitales_option .dot,
+#monde_option:checked:checked ~ .monde_option .dot,
+#europe_option:checked:checked ~ .europe_option .dot,
+#asie_option:checked:checked ~ .asie_option .dot,
+#afrique_option:checked:checked ~ .afrique_option .dot,
+#oceanie_option:checked:checked ~ .oceanie_option .dot,
+#amerique_option:checked:checked ~ .amerique_option .dot {
+  background: #fff;
+}
+#pays_option:checked:checked ~ .pays_option .dot::before,
+#drapeaux_option:checked:checked ~ .drapeaux_option .dot::before,
+#capitales_option:checked:checked ~ .capitales_option .dot::before,
+#monde_option:checked:checked ~ .monde_option .dot::before,
+#europe_option:checked:checked ~ .europe_option .dot::before,
+#asie_option:checked:checked ~ .asie_option .dot::before,
+#afrique_option:checked:checked ~ .afrique_option .dot::before,
+#oceanie_option:checked:checked ~ .oceanie_option .dot::before,
+#amerique_option:checked:checked ~ .amerique_option .dot::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span {
+  font-size: 20px;
+  color: #808080;
+}
+#pays_option:checked:checked ~ .pays_option span,
+#drapeaux_option:checked:checked ~ .drapeaux_option span,
+#capitales_option:checked:checked ~ .capitales_option span,
+#monde_option:checked:checked ~ .monde_option span,
+#europe_option:checked:checked ~ .europe_option span,
+#asie_option:checked:checked ~ .asie_option span,
+#afrique_option:checked:checked ~ .afrique_option span,
+#oceanie_option:checked:checked ~ .oceanie_option span,
+#amerique_option:checked:checked ~ .amerique_option span {
+  color: #fff;
+}
+
+#start_button {
+  background: #0069d9;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#start_button button {
+  background: green;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
