@@ -7,6 +7,7 @@
     <link href="css/quizz.css" rel="stylesheet" />
     <link href="css/all.css" rel="stylesheet" />
     <link href="css/all.min.css" rel="stylesheet" />
+    <script src="js/constantes.js"></script>
     <title>GeoQuizz</title>
   </head>
   <body>
@@ -17,9 +18,9 @@
       <i class="fa-solid fa-arrow-left"></i>
     </div>
     <section>
-      <div>
+      <div id="questions_part">
         <div id="flag_div">
-          <img id="flag">
+          <img id="flag" />
         </div>
         <input id="input_answer" type="text" oninput="autoValidation()" />
         <div id="avancement_and_last_country">
@@ -29,8 +30,11 @@
         <span id="registered_answer">Réponse déjà enregistré</span>
         <span id="bad_answer">Mauvaise réponse</span>
       </div>
+      <script src="js/tableaux_html.js"></script>
+      <script>
+        document.write(PAYS_EUROPE_TAB);
+      </script>
     </section>
   </body>
-  <script src="js/constantes.js"></script>
   <script src="js/quizz.js"></script>
 </html>
