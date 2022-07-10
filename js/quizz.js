@@ -61,6 +61,13 @@ paysTrouve = getAnswers(localStorage.getItem("endroit"));
 const pays = [].concat(paysTrouve);
 document.getElementById("avancement").innerHTML = "0/" + paysTrouve.length;
 let avancement = 0;
+let selection = paysTrouve[0];
+if (localStorage.getItem("type") == "1") {
+  const flag = document.getElementById("flag");
+  flag.src = selection.getDrapeau();
+  const element = document.getElementsByClassName("case")[0];
+  element.classList.add("selectable");
+}
 
 function autoValidation() {
   document.getElementById("registered_answer").style.display = "none";
@@ -85,6 +92,27 @@ function autoValidation() {
         win();
         return;
       }
+    }
+  } else if (localStorage.getItem("type") == "1") {
+    if (compare(reponse, selection.name)) {
+      const i = paysTrouve.indexOf(selection);
+      avancement++;
+      document.getElementById("avancement").innerHTML =
+        avancement + "/" + pays.length;
+      document.getElementById("input_answer").value = "";
+      document.getElementById("last_country").innerHTML =
+        "Dernier pays trouvé: " + paysTrouve[i].name;
+
+      const index = pays.indexOf(paysTrouve[i]);
+      const element = document.getElementsByClassName("case")[index];
+      element.classList.remove("unselectable");
+      element.classList.remove("transparent");
+      element.classList.remove("selectable");
+
+      paysTrouve.splice(i, 1);
+      nextSelection(i);
+      win();
+      return;
     }
   } else if (localStorage.getItem("type") == "2") {
     for (let i = 0; i < paysTrouve.length; i++) {
@@ -118,24 +146,6 @@ function validation() {
   document.getElementById("bad_answer").style.display = "none";
   const reponse = document.getElementById("input_answer").value;
   if (localStorage.getItem("type") == "0") {
-    for (let i = 0; i < paysTrouve.length; i++) {
-      if (reponse.toLowerCase() == paysTrouve[i].name.toLowerCase()) {
-        avancement++;
-        document.getElementById("avancement").innerHTML =
-          avancement + "/" + pays.length;
-        document.getElementById("input_answer").value = "";
-        document.getElementById("last_country").innerHTML =
-          "Dernier pays trouvé: " + paysTrouve[i].name;
-
-        const index = pays.indexOf(paysTrouve[i]);
-        const element = document.getElementsByClassName("case")[index];
-        element.classList.remove("unselectable");
-        element.classList.remove("transparent");
-
-        paysTrouve.splice(i, 1);
-        return;
-      }
-    }
     for (let i = 0; i < pays.length; i++) {
       if (reponse.toLowerCase() == pays[i].name.toLowerCase()) {
         document.getElementById("registered_answer").style.display = "block";
@@ -143,29 +153,9 @@ function validation() {
       }
     }
     document.getElementById("bad_answer").style.display = "block";
+  } else if (localStorage.getItem("type") == "1") {
+    document.getElementById("bad_answer").style.display = "block";
   } else if (localStorage.getItem("type") == "2") {
-    for (let i = 0; i < paysTrouve.length; i++) {
-      if (reponse.toLowerCase() == paysTrouve[i].capitale.toLowerCase()) {
-        avancement++;
-        document.getElementById("avancement").innerHTML =
-          avancement + "/" + pays.length;
-        document.getElementById("input_answer").value = "";
-        document.getElementById("last_country").innerHTML =
-          "Derniere capitale trouvé: " +
-          paysTrouve[i].capitale +
-          " (" +
-          paysTrouve[i].name +
-          ")";
-
-        const index = pays.indexOf(paysTrouve[i]);
-        const element = document.getElementsByClassName("case")[index];
-        element.classList.remove("unselectable");
-        element.classList.remove("transparent");
-
-        paysTrouve.splice(i, 1);
-        return;
-      }
-    }
     for (let i = 0; i < pays.length; i++) {
       if (reponse.toLowerCase() == pays[i].capitale.toLowerCase()) {
         document.getElementById("registered_answer").style.display = "block";
@@ -178,8 +168,11 @@ function validation() {
 
 function win() {
   if (paysTrouve.length == 0) {
-    document.querySelector("section div").innerHTML =
-      '<img src="img/win.gif" style="width: 100%; heigth: auto;">';
+    document.querySelector("section").innerHTML =
+      '<img src="img/win.gif" style="width: 25%; heigth: auto;">';
+    document.querySelector("body").style.height = "100%";
+    document.querySelector("html").style.height = "100%";
+    document.querySelector("section").style.height = "100%";
   }
 }
 
@@ -202,4 +195,42 @@ input_answer.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     validation();
   }
+  if (localStorage.getItem("type") == "1") {
+    if (event.keyCode === 40 || event.keyCode === 39) {
+      nextSelection(paysTrouve.indexOf(selection) + 1);
+    }
+    if (event.keyCode === 38 || event.keyCode === 37) {
+      previousSelection(paysTrouve.indexOf(selection) - 1);
+    }
+  }
 });
+
+function nextSelection(i) {
+  const index = pays.indexOf(paysTrouve[i - 1]);
+  const element = document.getElementsByClassName("case")[index];
+  element.classList.remove("selectable");
+  if (i == paysTrouve.length) {
+    selection = paysTrouve[0];
+  } else {
+    selection = paysTrouve[i];
+  }
+  const j = pays.indexOf(selection);
+  const element2 = document.getElementsByClassName("case")[j];
+  element2.classList.add("selectable");
+  document.getElementById("flag").src = selection.getDrapeau();
+}
+
+function previousSelection(i) {
+  const index = pays.indexOf(paysTrouve[i + 1]);
+  const element = document.getElementsByClassName("case")[index];
+  element.classList.remove("selectable");
+  if (i == -1) {
+    selection = paysTrouve[paysTrouve.length - 1];
+  } else {
+    selection = paysTrouve[i];
+  }
+  const j = pays.indexOf(selection);
+  const element2 = document.getElementsByClassName("case")[j];
+  element2.classList.add("selectable");
+  document.getElementById("flag").src = selection.getDrapeau();
+}

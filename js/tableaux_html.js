@@ -9,7 +9,7 @@ function setPaysTab(pays) {
           '<td class="case unselectable transparent">' + pays[a].name + "</td>";
         a++;
       } catch {
-        tab += '<td class="case"></td>';
+        
       }
     }
     tab += "</tr>";
@@ -29,7 +29,7 @@ function setCapitaleTab(pays) {
           '<td class="case unselectable transparent">' + pays[a].capitale + "</td>";
         a++;
       } catch {
-        tab += '<td class="case"></td>';
+        
       }
     }
     tab += "</tr>";
@@ -44,6 +44,13 @@ const PAYS_ASIE_TAB = setPaysTab(PAYS_ASIE);
 const PAYS_AFRIQUE_TAB = setPaysTab(PAYS_AFRIQUE);
 const PAYS_AMERIQUE_TAB = setPaysTab(PAYS_AMERIQUE);
 const PAYS_OCEANIE_TAB = setPaysTab(PAYS_OCEANIE);
+
+const DRAPEAUX_MONDE_TAB = setPaysTab(PAYS);
+const DRAPEAUX_EUROPE_TAB = setPaysTab(PAYS_EUROPE);
+const DRAPEAUX_ASIE_TAB = setPaysTab(PAYS_ASIE);
+const DRAPEAUX_AFRIQUE_TAB = setPaysTab(PAYS_AFRIQUE);
+const DRAPEAUX_AMERIQUE_TAB = setPaysTab(PAYS_AMERIQUE);
+const DRAPEAUX_OCEANIE_TAB = setPaysTab(PAYS_OCEANIE);
  
 const CAPITALES_MONDE_TAB = setCapitaleTab(PAYS);
 const CAPITALES_EUROPE_TAB = setCapitaleTab(PAYS_EUROPE);

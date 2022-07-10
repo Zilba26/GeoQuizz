@@ -10,19 +10,6 @@ body {
   background-repeat: no-repeat;
 }
 
-#background {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -100;
-  overflow: hidden;
-}
-
-#background_image {
-  width: 100%;
-  height: auto;
-}
-
 #retour {
   position: absolute;
   top: 10px;
@@ -77,10 +64,6 @@ input {
   max-lines: 1;
 }
 
-#flag_div {
-  display: none;
-}
-
 #answers {
   background-color: white;
   margin-bottom: 20px;
@@ -116,6 +99,23 @@ td {
   color: #ced4e5;
 }
 
+.selectable {
+  background-color: rgb(255, 255, 132);
+  color: rgb(255, 255, 132);
+}
+
 #questions_part {
   padding: 100px 0px;
+}
+
+#flag_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#flag {
+  width: 50%;
+  height: auto;
 }

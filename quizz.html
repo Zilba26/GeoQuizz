@@ -12,9 +12,6 @@
     <title>GeoQuizz</title>
   </head>
   <body>
-    <!-- <div id="background">
-      <img src="img/etoiles2.jpg" id="background_image" />
-    </div> -->
     <div id="retour" onclick="retour()">
       <i class="fa-solid fa-arrow-left"></i>
     </div>
@@ -33,11 +30,8 @@
       </div>
       <script>
         let write;
-        console.log(localStorage.getItem("type"));
-        console.log(localStorage.getItem("endroit"));
         switch (localStorage.getItem("type")) {
           case "0": {
-            console.log("test");
             switch (localStorage.getItem("endroit")) {
               case "0": write = PAYS_MONDE_TAB; break;
               case "1": write = PAYS_EUROPE_TAB; break;
@@ -48,7 +42,17 @@
             }
             break;
           };
-          case "1": break;
+          case "1": {
+            switch (localStorage.getItem("endroit")) {
+              case "0": write = DRAPEAUX_MONDE_TAB; break;
+              case "1": write = DRAPEAUX_EUROPE_TAB; break;
+              case "2": write = DRAPEAUX_ASIE_TAB; break;
+              case "3": write = DRAPEAUX_AFRIQUE_TAB; break;
+              case "4": write = DRAPEAUX_AMERIQUE_TAB; break;
+              case "5": write = DRAPEAUX_OCEANIE_TAB; break;
+            }
+            break;
+          };
           case "2": {
             switch (localStorage.getItem("endroit")) {
               case "0": write = CAPITALES_MONDE_TAB; break;
@@ -62,7 +66,6 @@
           }
           default: break;
         }
-        console.log(write);
         if (write != undefined) {
           document.write(write);
         }

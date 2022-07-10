@@ -12,7 +12,7 @@ class Pays {
     }
 
     getDrapeau() {
-        return "img/flags/" + this.name.toLowerCase  + ".png";
+        return "img/flags/" + this.name.toLowerCase().replaceAll(' ', '_')  + ".png";
     }
 }
 
