@@ -32,7 +32,36 @@
       </div>
       <script src="js/tableaux_html.js"></script>
       <script>
-        document.write(PAYS_EUROPE_TAB);
+        let write;
+        switch (localStorage.getItem("type")) {
+          case 0: {
+            switch (localStorage.getItem("endroit")) {
+              case 0: write = PAYS_MONDE_TAB; break;
+              case 1: write = PAYS_EUROPE_TAB; break;
+              case 2: write = PAYS_ASIE_TAB; break;
+              case 3: write = PAYS_AFRIQUE_TAB; break;
+              case 4: write = PAYS_AMERIQUE_TAB; break;
+              case 5: write = PAYS_OCEANIE_TAB; break;
+            }
+            break;
+          };
+          case 1: break;
+          case 2: {
+            switch (localStorage.getItem("endroit")) {
+              case 0: write = CAPITALES_MONDE_TAB; break;
+              case 1: write = CAPITALES_EUROPE_TAB; break;
+              case 2: write = CAPITALES_ASIE_TAB; break;
+              case 3: write = CAPITALES_AFRIQUE_TAB; break;
+              case 4: write = CAPITALES_AMERIQUE_TAB; break;
+              case 5: write = CAPITALES_OCEANIE_TAB; break;
+            }
+            break;
+          }
+          default: break;
+        }
+        if (write != undefined) {
+          document.write(write);
+        }
       </script>
     </section>
   </body>

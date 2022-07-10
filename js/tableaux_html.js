@@ -1,20 +1,26 @@
 let PAYS_EUROPE_TAB ='<table id="answers"><tr class="row"><th>Pays</th><th>Pays</th><th>Pays</th><th>Pays</th></tr>';
+let CAPITALES_EUROPE_TAB = '<table id="answers"><tr class="row"><th>Capitales</th><th>Capitales</th><th>Capitales</th><th>Capitales</th></tr>';
 
 a = 0;
 for (let i = 0 ; i < Math.ceil(PAYS_EUROPE.length / 4) ; i++) {
     PAYS_EUROPE_TAB += '<tr class="row">';
+    CAPITALES_EUROPE_TAB += '<tr class="row">';
     for (let j = 0 ; j < 4 ; j++) {
         try{
             PAYS_EUROPE_TAB += '<td class="case unselectable transparent">' + PAYS_EUROPE[a].name + '</td>';
+            CAPITALES_EUROPE_TAB += '<td class="case unselectable transparent">' + PAYS_EUROPE[a].capitale + '</td>';
             a++;
         } catch {
             PAYS_EUROPE_TAB += '<td class="case"></td>';
+            CAPITALES_EUROPE_TAB += '<td class="case"></td>';
         }
         
     }
     PAYS_EUROPE_TAB += '</tr>';
+    CAPITALES_EUROPE_TAB += '</tr>';
 }
 PAYS_EUROPE_TAB += '</table>';
+CAPITALES_EUROPE_TAB += '</table>';
 /* <table id="answers">
   <tr class="row">
     <th>Pays</th>
