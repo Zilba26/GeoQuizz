@@ -119,3 +119,7 @@ td {
 #questions_part {
   padding: 100px 0px;
 }
+
+body, html, section{
+  height: 100%;
+}

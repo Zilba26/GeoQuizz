@@ -8,6 +8,7 @@
     <link href="css/all.css" rel="stylesheet" />
     <link href="css/all.min.css" rel="stylesheet" />
     <script src="js/constantes.js"></script>
+    <script src="js/tableaux_html.js"></script>
     <title>GeoQuizz</title>
   </head>
   <body>
@@ -30,35 +31,38 @@
         <span id="registered_answer">Réponse déjà enregistré</span>
         <span id="bad_answer">Mauvaise réponse</span>
       </div>
-      <script src="js/tableaux_html.js"></script>
       <script>
         let write;
+        console.log(localStorage.getItem("type"));
+        console.log(localStorage.getItem("endroit"));
         switch (localStorage.getItem("type")) {
-          case 0: {
+          case "0": {
+            console.log("test");
             switch (localStorage.getItem("endroit")) {
-              case 0: write = PAYS_MONDE_TAB; break;
-              case 1: write = PAYS_EUROPE_TAB; break;
-              case 2: write = PAYS_ASIE_TAB; break;
-              case 3: write = PAYS_AFRIQUE_TAB; break;
-              case 4: write = PAYS_AMERIQUE_TAB; break;
-              case 5: write = PAYS_OCEANIE_TAB; break;
+              case "0": write = PAYS_MONDE_TAB; break;
+              case "1": write = PAYS_EUROPE_TAB; break;
+              case "2": write = PAYS_ASIE_TAB; break;
+              case "3": write = PAYS_AFRIQUE_TAB; break;
+              case "4": write = PAYS_AMERIQUE_TAB; break;
+              case "5": write = PAYS_OCEANIE_TAB; break;
             }
             break;
           };
-          case 1: break;
-          case 2: {
+          case "1": break;
+          case "2": {
             switch (localStorage.getItem("endroit")) {
-              case 0: write = CAPITALES_MONDE_TAB; break;
-              case 1: write = CAPITALES_EUROPE_TAB; break;
-              case 2: write = CAPITALES_ASIE_TAB; break;
-              case 3: write = CAPITALES_AFRIQUE_TAB; break;
-              case 4: write = CAPITALES_AMERIQUE_TAB; break;
-              case 5: write = CAPITALES_OCEANIE_TAB; break;
+              case "0": write = CAPITALES_MONDE_TAB; break;
+              case "1": write = CAPITALES_EUROPE_TAB; break;
+              case "2": write = CAPITALES_ASIE_TAB; break;
+              case "3": write = CAPITALES_AFRIQUE_TAB; break;
+              case "4": write = CAPITALES_AMERIQUE_TAB; break;
+              case "5": write = CAPITALES_OCEANIE_TAB; break;
             }
             break;
           }
           default: break;
         }
+        console.log(write);
         if (write != undefined) {
           document.write(write);
         }
