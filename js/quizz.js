@@ -56,6 +56,7 @@ function getAnswers(endroit) {
 document.title =
   getType(localStorage.getItem("type")) +
   getEndroit(localStorage.getItem("endroit"));
+
 paysTrouve = getAnswers(localStorage.getItem("endroit"));
 const pays = [].concat(paysTrouve);
 document.getElementById("avancement").innerHTML = "0/" + paysTrouve.length;
@@ -74,6 +75,12 @@ function autoValidation() {
         document.getElementById("input_answer").value = "";
         document.getElementById("last_country").innerHTML =
           "Dernier pays trouvé: " + paysTrouve[i].name;
+
+        const index = pays.indexOf(paysTrouve[i]);
+        const element = document.getElementsByClassName("case")[index];
+        element.classList.remove("unselectable");
+        element.classList.remove("transparent");
+
         paysTrouve.splice(i, 1);
         win();
         return;
@@ -92,6 +99,12 @@ function autoValidation() {
           " (" +
           paysTrouve[i].name +
           ")";
+
+        const index = pays.indexOf(paysTrouve[i]);
+        const element = document.getElementsByClassName("case")[index];
+        element.classList.remove("unselectable");
+        element.classList.remove("transparent");
+
         paysTrouve.splice(i, 1);
         win();
         return;
@@ -113,6 +126,12 @@ function validation() {
         document.getElementById("input_answer").value = "";
         document.getElementById("last_country").innerHTML =
           "Dernier pays trouvé: " + paysTrouve[i].name;
+
+        const index = pays.indexOf(paysTrouve[i]);
+        const element = document.getElementsByClassName("case")[index];
+        element.classList.remove("unselectable");
+        element.classList.remove("transparent");
+
         paysTrouve.splice(i, 1);
         return;
       }
@@ -137,6 +156,12 @@ function validation() {
           " (" +
           paysTrouve[i].name +
           ")";
+
+        const index = pays.indexOf(paysTrouve[i]);
+        const element = document.getElementsByClassName("case")[index];
+        element.classList.remove("unselectable");
+        element.classList.remove("transparent");
+
         paysTrouve.splice(i, 1);
         return;
       }

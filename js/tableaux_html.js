@@ -5,7 +5,7 @@ for (let i = 0 ; i < Math.ceil(PAYS_EUROPE.length / 4) ; i++) {
     PAYS_EUROPE_TAB += '<tr class="row">';
     for (let j = 0 ; j < 4 ; j++) {
         try{
-            PAYS_EUROPE_TAB += '<td class="case">' + PAYS_EUROPE[a].name + '</td>';
+            PAYS_EUROPE_TAB += '<td class="case unselectable transparent">' + PAYS_EUROPE[a].name + '</td>';
             a++;
         } catch {
             PAYS_EUROPE_TAB += '<td class="case"></td>';
