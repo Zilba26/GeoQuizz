@@ -20,14 +20,14 @@ function setPaysTab(pays) {
 
 function setDrapeauTab(pays) {
   a = 0;
-  let tab = '<table id="answers"><tr class="row"><th>Drapeaux</th><th>Pays</th><th>Drapeaux</th><th>Pays</th><th>Drapeaux</th><th>Pays</th><th>Drapeaux</th><th>Pays</th></tr>';
+  let tab = '<table id="answers" style="width: max-content"><tr class="row"><th>Drapeaux</th><th>Pays</th><th>Drapeaux</th><th>Pays</th><th>Drapeaux</th><th>Pays</th><th>Drapeaux</th><th>Pays</th></tr>';
   for (let i = 0; i < Math.ceil(pays.length / 4); i++) {
     tab += '<tr class="row">';
     for (let j = 0; j < 4; j++) {
       try {
         tab += '<td class="caseDrapeau"><img src="' + pays[a].getDrapeau() + '"/></td>';
         tab +=
-          '<td class="case unselectable transparent">' + pays[a].name + "</td>";
+          '<td class="case unselectable transparent" onclick="setSelection(' + (4*i+j) + ')" style="white-space: nowrap;cursor: pointer;">' + pays[a].name + "</td>";
         a++;
       } catch {
         

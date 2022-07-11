@@ -67,9 +67,6 @@ if (localStorage.getItem("type") == "1") {
   flag.src = selection.getDrapeau();
   const element = document.getElementsByClassName("case")[0];
   element.classList.add("selectable");
-
-  document.querySelector("table").style.width = "max-content";
-  document.querySelectorAll("td").forEach((elt) => elt.style.whiteSpace = "nowrap");
 }
 
 function autoValidation() {
@@ -238,6 +235,19 @@ function previousSelection(i) {
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
   document.getElementById("input_answer").value = "";
+}
+
+function setSelection(i) {
+  const index = pays.indexOf(selection);
+  const element = document.getElementsByClassName("case")[index];
+  element.classList.remove("selectable");
+  selection = pays[i];
+  const j = pays.indexOf(selection);
+  const element2 = document.getElementsByClassName("case")[j];
+  element2.classList.add("selectable");
+  document.getElementById("flag").src = selection.getDrapeau(); 
+  document.getElementById("input_answer").value = "";
+  document.getElementById("input_answer").focus();
 }
 
 function abandonner() {
