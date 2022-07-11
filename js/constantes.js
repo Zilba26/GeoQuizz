@@ -239,10 +239,30 @@ const PAYS = [
     VENEZUELA, VIETNAM, YEMEN, ZAMBIE, ZIMBABWE
 ]
 
-const PAYS_EUROPE = PAYS.filter(elt => elt.continent == "Europe" || elt.continent == "Eurasie");
-const PAYS_ASIE = PAYS.filter(elt => elt.continent == "Asie" || elt.continent == "Eurasie");
-const PAYS_AFRIQUE = PAYS.filter(elt => elt.continent == "Afrique");
-const PAYS_AMERIQUE = PAYS.filter(elt => elt.continent == "Amérique du nord" || elt.continent == "Amérique du sud");
-const PAYS_AMERIQUE_DU_NORD = PAYS.filter(elt => elt.continent == "Amérique du sud");
-const PAYS_AMERIQUE_DU_SUD = PAYS.filter(elt => elt.continent == "Amérique du nord");
-const PAYS_OCEANIE = PAYS.filter(elt => elt.continent == "Océanie");
+let PAYS_EUROPE = PAYS.filter(elt => elt.continent == "Europe" || elt.continent == "Eurasie");
+let PAYS_ASIE = PAYS.filter(elt => elt.continent == "Asie" || elt.continent == "Eurasie");
+let PAYS_AFRIQUE = PAYS.filter(elt => elt.continent == "Afrique");
+let PAYS_AMERIQUE = PAYS.filter(elt => elt.continent == "Amérique du nord" || elt.continent == "Amérique du sud");
+let PAYS_AMERIQUE_DU_NORD = PAYS.filter(elt => elt.continent == "Amérique du sud");
+let PAYS_AMERIQUE_DU_SUD = PAYS.filter(elt => elt.continent == "Amérique du nord");
+let PAYS_OCEANIE = PAYS.filter(elt => elt.continent == "Océanie");
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+if (localStorage.getItem("type") == "1") {
+    PAYS_EUROPE = shuffleArray(PAYS_EUROPE);
+    PAYS_ASIE = shuffleArray(PAYS_ASIE);
+    PAYS_AFRIQUE = shuffleArray(PAYS_AFRIQUE);
+    PAYS_AMERIQUE = shuffleArray(PAYS_AMERIQUE);
+    PAYS_AMERIQUE_DU_NORD = shuffleArray(PAYS_AMERIQUE_DU_NORD);
+    PAYS_AMERIQUE_DU_SUD = shuffleArray(PAYS_AMERIQUE_DU_SUD);
+    PAYS_OCEANIE = shuffleArray(PAYS_OCEANIE);
+}

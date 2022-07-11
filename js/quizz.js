@@ -196,10 +196,10 @@ input_answer.addEventListener("keyup", function (event) {
     validation();
   }
   if (localStorage.getItem("type") == "1") {
-    if (event.keyCode === 40 || event.keyCode === 39) {
+    if (event.keyCode === 40) {
       nextSelection(paysTrouve.indexOf(selection) + 1);
     }
-    if (event.keyCode === 38 || event.keyCode === 37) {
+    if (event.keyCode === 38) {
       previousSelection(paysTrouve.indexOf(selection) - 1);
     }
   }
@@ -245,7 +245,7 @@ function setSelection(i) {
   const j = pays.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
-  document.getElementById("flag").src = selection.getDrapeau(); 
+  document.getElementById("flag").src = selection.getDrapeau();
   document.getElementById("input_answer").value = "";
   document.getElementById("input_answer").focus();
 }
@@ -265,5 +265,7 @@ function abandonner() {
   button.style.backgroundColor = "green";
   button.onclick = function () {
     window.location.href = "quizz.html";
-  }
+  };
 }
+
+document.getElementById("input_answer").focus();

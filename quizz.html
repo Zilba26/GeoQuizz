@@ -22,55 +22,91 @@
         </div>
         <div id="input_button">
           <div id="input">
-          <input id="input_answer" type="text" oninput="autoValidation()" />
-          <div id="avancement_and_last_country">
-            <span id="avancement"></span>
-            <span id="last_country"></span>
+            <input id="input_answer" type="text" oninput="autoValidation()" />
+            <div id="avancement_and_last_country">
+              <span id="avancement"></span>
+              <span id="last_country"></span>
+            </div>
+            <span id="registered_answer">Réponse déjà enregistré</span>
+            <span id="bad_answer">Mauvaise réponse</span>
           </div>
-          <span id="registered_answer">Réponse déjà enregistré</span>
-          <span id="bad_answer">Mauvaise réponse</span>
+          <button id="abandonner" onclick="abandonner()">Abandonner</button>
         </div>
-        <button id="abandonner" onclick="abandonner()">Abandonner</button>
-        </div>
-        
       </div>
       <script>
         let write;
         switch (localStorage.getItem("type")) {
           case "0": {
             switch (localStorage.getItem("endroit")) {
-              case "0": write = PAYS_MONDE_TAB; break;
-              case "1": write = PAYS_EUROPE_TAB; break;
-              case "2": write = PAYS_ASIE_TAB; break;
-              case "3": write = PAYS_AFRIQUE_TAB; break;
-              case "4": write = PAYS_AMERIQUE_TAB; break;
-              case "5": write = PAYS_OCEANIE_TAB; break;
-            }
-            break;
-          };
-          case "1": {
-            switch (localStorage.getItem("endroit")) {
-              case "0": write = DRAPEAUX_MONDE_TAB; break;
-              case "1": write = DRAPEAUX_EUROPE_TAB; break;
-              case "2": write = DRAPEAUX_ASIE_TAB; break;
-              case "3": write = DRAPEAUX_AFRIQUE_TAB; break;
-              case "4": write = DRAPEAUX_AMERIQUE_TAB; break;
-              case "5": write = DRAPEAUX_OCEANIE_TAB; break;
-            }
-            break;
-          };
-          case "2": {
-            switch (localStorage.getItem("endroit")) {
-              case "0": write = CAPITALES_MONDE_TAB; break;
-              case "1": write = CAPITALES_EUROPE_TAB; break;
-              case "2": write = CAPITALES_ASIE_TAB; break;
-              case "3": write = CAPITALES_AFRIQUE_TAB; break;
-              case "4": write = CAPITALES_AMERIQUE_TAB; break;
-              case "5": write = CAPITALES_OCEANIE_TAB; break;
+              case "0":
+                write = PAYS_MONDE_TAB;
+                break;
+              case "1":
+                write = PAYS_EUROPE_TAB;
+                break;
+              case "2":
+                write = PAYS_ASIE_TAB;
+                break;
+              case "3":
+                write = PAYS_AFRIQUE_TAB;
+                break;
+              case "4":
+                write = PAYS_AMERIQUE_TAB;
+                break;
+              case "5":
+                write = PAYS_OCEANIE_TAB;
+                break;
             }
             break;
           }
-          default: break;
+          case "1": {
+            switch (localStorage.getItem("endroit")) {
+              case "0":
+                write = DRAPEAUX_MONDE_TAB;
+                break;
+              case "1":
+                write = DRAPEAUX_EUROPE_TAB;
+                break;
+              case "2":
+                write = DRAPEAUX_ASIE_TAB;
+                break;
+              case "3":
+                write = DRAPEAUX_AFRIQUE_TAB;
+                break;
+              case "4":
+                write = DRAPEAUX_AMERIQUE_TAB;
+                break;
+              case "5":
+                write = DRAPEAUX_OCEANIE_TAB;
+                break;
+            }
+            break;
+          }
+          case "2": {
+            switch (localStorage.getItem("endroit")) {
+              case "0":
+                write = CAPITALES_MONDE_TAB;
+                break;
+              case "1":
+                write = CAPITALES_EUROPE_TAB;
+                break;
+              case "2":
+                write = CAPITALES_ASIE_TAB;
+                break;
+              case "3":
+                write = CAPITALES_AFRIQUE_TAB;
+                break;
+              case "4":
+                write = CAPITALES_AMERIQUE_TAB;
+                break;
+              case "5":
+                write = CAPITALES_OCEANIE_TAB;
+                break;
+            }
+            break;
+          }
+          default:
+            break;
         }
         if (write != undefined) {
           document.write(write);
