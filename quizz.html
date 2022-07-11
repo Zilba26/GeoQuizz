@@ -20,13 +20,19 @@
         <div id="flag_div">
           <img id="flag" />
         </div>
-        <input id="input_answer" type="text" oninput="autoValidation()" />
-        <div id="avancement_and_last_country">
-          <span id="avancement"></span>
-          <span id="last_country"></span>
+        <div id="input_button">
+          <div id="input">
+          <input id="input_answer" type="text" oninput="autoValidation()" />
+          <div id="avancement_and_last_country">
+            <span id="avancement"></span>
+            <span id="last_country"></span>
+          </div>
+          <span id="registered_answer">Réponse déjà enregistré</span>
+          <span id="bad_answer">Mauvaise réponse</span>
         </div>
-        <span id="registered_answer">Réponse déjà enregistré</span>
-        <span id="bad_answer">Mauvaise réponse</span>
+        <button id="abandonner" onclick="abandonner()">Abandonner</button>
+        </div>
+        
       </div>
       <script>
         let write;

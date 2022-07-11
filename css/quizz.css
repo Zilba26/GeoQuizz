@@ -31,7 +31,7 @@ section {
 }
 
 #questions_part {
-  width: 25%;
+  width: 30%;
 }
 
 input {
@@ -118,4 +118,22 @@ td {
 #flag {
   width: 50%;
   height: auto;
+}
+
+#abandonner {
+  padding: 7px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  height: min-content;
+  font-size: 17px;
+}
+
+#input_button {
+  display: flex;
+  gap: 5px;
+}
+
+#input {
+  width: 100%;
 }

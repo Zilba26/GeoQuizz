@@ -109,7 +109,7 @@ function autoValidation() {
       element.classList.remove("transparent");
       element.classList.remove("selectable");
 
-      nextSelection(i+1);
+      nextSelection(i + 1);
       paysTrouve.splice(i, 1);
       win();
       return;
@@ -233,4 +233,22 @@ function previousSelection(i) {
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
+}
+
+function abandonner() {
+  const selectable = document.getElementsByClassName("selectable");
+  for (let i = 0; i < selectable.length; i++) {
+    selectable[i].classList.remove("selectable");
+  }
+  const transparent = document.getElementsByClassName("transparent");
+  for (let i = 0; i < transparent.length; i++) {
+    transparent[i].classList.remove("unselectable");
+    transparent[i].style.color = "red";
+  }
+  const button = document.getElementById("abandonner");
+  button.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
+  button.style.backgroundColor = "green";
+  button.onclick = function () {
+    window.location.href = "quizz.html";
+  }
 }
