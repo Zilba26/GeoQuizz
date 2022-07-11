@@ -218,6 +218,7 @@ function nextSelection(i) {
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
+  document.getElementById("input_answer").value = "";
 }
 
 function previousSelection(i) {
@@ -233,6 +234,7 @@ function previousSelection(i) {
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
+  document.getElementById("input_answer").value = "";
 }
 
 function abandonner() {
