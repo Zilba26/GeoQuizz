@@ -109,8 +109,8 @@ function autoValidation() {
       element.classList.remove("transparent");
       element.classList.remove("selectable");
 
+      nextSelection(i+1);
       paysTrouve.splice(i, 1);
-      nextSelection(i);
       win();
       return;
     }
