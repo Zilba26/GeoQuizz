@@ -74,6 +74,14 @@ input {
   padding-left: 5px;
 }
 
+.caseDrapeau img {
+  height: 30px;
+}
+
+.caseDrapeau {
+  text-align: center;
+}
+
 th {
   background-color: #557cba;
 }
@@ -81,7 +89,7 @@ td {
   background-color: #ced4e5;
 }
 th,
-td {
+.case {
   padding: 0.7em;
   text-align: center;
 }

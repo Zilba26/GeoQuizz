@@ -67,6 +67,9 @@ if (localStorage.getItem("type") == "1") {
   flag.src = selection.getDrapeau();
   const element = document.getElementsByClassName("case")[0];
   element.classList.add("selectable");
+
+  document.querySelector("table").style.width = "max-content";
+  document.querySelectorAll("td").forEach((elt) => elt.style.whiteSpace = "nowrap");
 }
 
 function autoValidation() {
