@@ -95,7 +95,8 @@ function autoValidation() {
       }
     }
   } else if (localStorage.getItem("type") == "1") {
-    if (compare(reponse, selection.name)) {
+    let alias = selection.options["alias"];
+    if (compare(reponse, selection.name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
       const i = paysTrouve.indexOf(selection);
       avancement++;
       document.getElementById("avancement").innerHTML =
