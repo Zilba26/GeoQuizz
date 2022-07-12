@@ -88,8 +88,7 @@ th {
 td {
   background-color: #ced4e5;
 }
-th,
-.case {
+th, .case, .casePays {
   padding: 0.7em;
   text-align: center;
 }

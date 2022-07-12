@@ -266,3 +266,136 @@ if (localStorage.getItem("type") == "1") {
     PAYS_AMERIQUE_DU_SUD = shuffleArray(PAYS_AMERIQUE_DU_SUD);
     PAYS_OCEANIE = shuffleArray(PAYS_OCEANIE);
 }
+
+class Departement {
+    constructor(name, numero, region, prefecture, options) {
+        this.name = name;
+        this.numero = numero;
+        this.region = region;
+        this.prefecture = prefecture;
+        this.options = options;
+    }
+}
+
+const REGIONS = {
+    AUVERGNE: "Auvergne-Rhône-Alpes",
+    BOURGOGNE: "Bourgogne-Franche-Comté",
+    BRETAGNE: "Bretagne",
+    CENTRE: "Centre-Val de Loire",
+    CORSE: "Corse",
+    GRAND_EST: "Grand Est",
+    HAUT_DE_FRANCE: "Hauts-de-France",
+    IDF: "Île-de-France",
+    NORMANDIE: "Normandie",
+    NOUVELLE_AQUITAINE: "Nouvelle-Aquitaine",
+    OCCITANIE: "Occitanie",
+    PAYS_DE_LA_LOIRE: "Pays de la Loire",
+    PACA: "Provence-Alpes-Côte d'Azur",
+    GUADELOUPE: "Guadeloupe",
+    GUYANE: "Guyane",
+    REUNION: "La Réunion",
+    MAYOTTE: "Mayotte",
+    MARTINIQUE: "Martinique"
+}
+
+const AIN = Region("Ain", "01", REGIONS.AUVERGNE, "Bourg-en-Bresse");
+const AISNE = Region("Aisne", "02", REGIONS.HAUT_DE_FRANCE, "Laon");
+const ALLIER = Region("Allier", "03", REGIONS.AUVERGNE, "Moulins");
+const ALPES_DE_HAUTE_PROVENCE = Region("Alpes-de-Haute-Provence", "04", REGIONS.PACA, "Digne-les-Bains");
+const HAUTES_ALPES = Region("Hautes-Alpes", "05", REGIONS.PACA, "Gap");
+const ALPES_MARITIMES = Region("Alpes-Maritimes", "06", REGIONS.PACA, "Nice");
+const ARDECHE = Region("Ardèche", "07", REGIONS.AUVERGNE, "Privas");
+const ARDENNES = Region("Ardennes", "08", REGIONS.GRAND_EST, "Charleville-Mézières");
+const ARIEGE = Region("Ariege", "09", REGIONS.OCCITANIE, "Foix");
+const AUBE = Region("Aube", "10", REGIONS.GRAND_EST, "Troyes");
+const AUDE = Region("Aude", "11", REGIONS.OCCITANIE, "Carcassonne");
+const AVEYRON = Region("Aveyron", "12", REGIONS.OCCITANIE, "Rodez");
+const BOUCHES_DU_RHONE = Region("Bouches-du-Rhône", "13", REGIONS.PACA, "Marseille");
+const CALVADOS = Region("Calvados", "14", REGIONS.NORMANDIE, "Caen");
+const CANTAL = Region("Cantal", "15", REGIONS.AUVERGNE, "Aurillac");
+const CHARENTE = Region("Charente", "16", REGIONS.NOUVELLE_AQUITAINE, "Angoulême");
+const CHARENTE_MARITIME = Region("Charente-Maritime", "17", REGIONS.NOUVELLE_AQUITAINE, "La Rochelle");
+const CHER = Region("Cher", "18", REGIONS.CENTRE, "Bourges");
+const CORREZE = Region("Corrèze", "19", REGIONS.NOUVELLE_AQUITAINE, "Tulle");
+const CORSE_DU_SUD = Region("Corse-du-Sud", "2A", REGIONS.CORSE, "Ajaccio");
+const HAUTE_CORSE = Region("Haute-Corse", "2B", REGIONS.CORSE, "Bastia");
+const COTES_D_OR = Region("Côtes-d'Armor", "21", REGIONS.BOURGOGNE, "Dijon");
+const COTES_D_ARMOR = Region("Côtes-d'Armor", "22", REGIONS.BRETAGNE, "Saint-Brieuc");
+const CREUSE = Region("Creuse", "23", REGIONS.NOUVELLE_AQUITAINE, "Guéret");
+const DORDOGNE = Region("Dordogne", "24", REGIONS.NOUVELLE_AQUITAINE, "Périgueux");
+const DOUBS = Region("Doubs", "25", REGIONS.BOURGOGNE, "Besançon");
+const DROME = Region("Drôme", "26", REGIONS.AUVERGNE, "Valence");
+const EURE = Region("Eure", "27", REGIONS.NORMANDIE, "Évreux");
+const EURE_ET_LOIR = Region("Eure-et-Loir", "28", REGIONS.CENTRE, "Chartres");
+const FINISTERE = Region("Finistère", "29", REGIONS.BRETAGNE, "Quimper");
+const GARD = Region("Gard", "30", REGIONS.OCCITANIE, "Nîmes");
+const HAUTE_GARONNE = Region("Haute-Garonne", "31", REGIONS.OCCITANIE, "Toulouse");
+const GERS = Region("Gers", "32", REGIONS.OCCITANIE, "Auch");
+const GIRONDE = Region("Gironde", "33", REGIONS.NOUVELLE_AQUITAINE, "Bordeaux");
+const HÉRAULT = Region("Hérault", "34", REGIONS.OCCITANIE, "Montpellier");
+const ILLE_ET_VILAINE = Region("Ille-et-Vilaine", "35", REGIONS.BRETAGNE, "Rennes");
+const INDRE = Region("Indre", "36", REGIONS.CENTRE, "Châteauroux");
+const INDRE_ET_LOIRE = Region("Indre-et-Loire", "37", REGIONS.CENTRE, "Tours");
+const ISERE = Region("Isère", "38", REGIONS.AUVERGNE, "Grenoble");
+const JURA = Region("Jura", "39", REGIONS.BOURGOGNE, "Lons-le-Saunier");
+const LANDES = Region("Landes", "40", REGIONS.NOUVELLE_AQUITAINE, "Mont-de-Marsan");
+const LOIR_ET_CHER = Region("Loire-et-Cher", "41", REGIONS.CENTRE, "Blois");
+const LOIRE = Region("Loire", "42", REGIONS.AUVERGNE, "Saint-Étienne");
+const HAUTE_LOIRE = Region("Haute-Loire", "43", REGIONS.AUVERGNE, "Le Puy-en-Velay");
+const LOIRE_ATLANTIQUE = Region("Loire-Atlantique", "44", REGIONS.PAYS_DE_LA_LOIRE, "Nantes");
+const LOIRET = Region("Loiret", "45", REGIONS.CENTRE, "Orléans");
+const LOT = Region("Lot", "46", REGIONS.OCCITANIE, "Cahors");
+const LOT_ET_GARONNE = Region("Lot-et-Garonne", "47", REGIONS.NOUVELLE_AQUITAINE, "Agen");
+const LOZERE = Region("Lozère", "48", REGIONS.OCCITANIE, "Mende");
+const MAINE_ET_LOIRE = Region("Maine-et-Loire", "49", REGIONS.PAYS_DE_LA_LOIRE, "Angers");
+const MANCHE = Region("Manche", "50", REGIONS.NORMANDIE, "Saint-Lô");
+const MARNE = Region("Marne", "51", REGIONS.GRAND_EST, "Châlons-en-Champagne");
+const HAUTE_MARNE = Region("Haute-Marne", "52", REGIONS.GRAND_EST, "Chaumont");
+const MAYENNE = Region("Mayenne", "53", REGIONS.PAYS_DE_LA_LOIRE, "Laval");
+const MEURTHE_ET_MOSELLE = Region("Meurthe-et-Moselle", "54", REGIONS.GRAND_EST, "Nancy");
+const MEUSE = Region("Meuse", "55", REGIONS.GRAND_EST, "Bar-le-Duc");
+const MORBIHAN = Region("Morbihan", "56", REGIONS.BRETAGNE, "Vannes");
+const MOSELLE = Region("Moselle", "57", REGIONS.GRAND_EST, "Metz");
+const NIEVRE = Region("Nièvre", "58", REGIONS.BOURGOGNE, "Nevers");
+const NORD = Region("Nord", "59", REGIONS.HAUT_DE_FRANCE, "Lille");
+const OISE = Region("Oise", "60", REGIONS.HAUT_DE_FRANCE, "Beauvais");
+const ORNE = Region("Orne", "61", REGIONS.NORMANDIE, "Alençon");
+const PAS_DE_CALAIS = Region("Pas-de-Calais", "62", REGIONS.HAUT_DE_FRANCE, "Arras");
+const PUY_DE_DOME = Region("Puy-de-Dôme", "63", REGIONS.AUVERGNE, "Clermont-Ferrand");
+const PYRENEES_ATLANTIQUES = Region("Pyrénées-Atlantiques", "64", REGIONS.NOUVELLE_AQUITAINE, "Pau");
+const HAUTES_PYRENEES = Region("Hautes-Pyrénées", "65", REGIONS.OCCITANIE, "Tarbes");
+const PYRENEES_ORIENTALES = Region("Pyrénées-Orientales", "66", REGIONS.OCCITANIE, "Perpignan");
+const BAS_RHIN = Region("Bas-Rhin", "67", REGIONS.GRAND_EST, "Strasbourg");
+const HAUT_RHIN = Region("Haut-Rhin", "68", REGIONS.GRAND_EST, "Colmar");
+const RHONE = Region("Rhône", "69", REGIONS.AUVERGNE, "Lyon");
+const HAUTE_SAONE = Region("Haute-Saône", "70", REGIONS.BOURGOGNE, "Vesoul");
+const SAONE_ET_LOIRE = Region("Saône-et-Loire", "71", REGIONS.BOURGOGNE, "Mâcon");
+const SARTHE = Region("Sarthe", "72", REGIONS.PAYS_DE_LA_LOIRE, "Le Mans");
+const SAVOIE = Region("Savoie", "73", REGIONS.AUVERGNE, "Chambéry");
+const HAUTE_SAVOIE = Region("Haute-Savoie", "74", REGIONS.AUVERGNE, "Annecy");
+const PARIS = Region("Paris", "75", REGIONS.IDF, "Paris");
+const SEINE_MARITIME = Region("Seine-Maritime", "76", REGIONS.NORMANDIE, "Rouen");
+const SEINE_ET_MARNE = Region("Seine-et-Marne", "77", REGIONS.IDF, "Melun");
+const YVELINES = Region("Yvelines", "78", REGIONS.IDF, "Versailles");
+const DEUX_SÈVRES = Region("Deux-Sèvres", "79", REGIONS.NOUVELLE_AQUITAINE, "Niort");
+const SOMME = Region("Somme", "80", REGIONS.HAUT_DE_FRANCE, "Amiens");
+const TARN = Region("Tarn", "81", REGIONS.OCCITANIE, "Albi");
+const TARN_ET_GARONNE = Region("Tarn-et-Garonne", "82", REGIONS.OCCITANIE, "Montauban");
+const VAR = Region("Var", "83", REGIONS.PACA, "Toulon");
+const VAUCLUSE = Region("Vaucluse", "84", REGIONS.PACA, "Avignon");
+const VENDEE = Region("Vendée", "85", REGIONS.PAYS_DE_LA_LOIRE, "La Roche-sur-Yon");
+const VIENNE = Region("Vienne", "86", REGIONS.NOUVELLE_AQUITAINE, "Poitiers");
+const HAUTE_VIENNE = Region("Haute-Vienne", "87", REGIONS.NOUVELLE_AQUITAINE, "Limoges");
+const VOSGES = Region("Vosges", "88", REGIONS.GRAND_EST, "Épinal");
+const YONNE = Region("Yonne", "89", REGIONS.BOURGOGNE, "Auxerre");
+const TERRITOIRE_DE_BELFORT = Region("Territoire de Belfort", "90", REGIONS.BOURGOGNE, "Belfort");
+const ESSONNE = Region("Essonne", "91", REGIONS.IDF, "Évry-Courcouronnes");
+const HAUTS_DE_SEINE = Region("Hauts-de-Seine", "92", REGIONS.IDF, "Nanterre");
+const SEINE_SUR_MARNE = Region("Seine-sur-Marne", "93", REGIONS.IDF, "Bobigny");
+const VAL_DE_MARNE = Region("Val-de-Marne", "94", REGIONS.IDF, "Créteil");
+const VAL_DOISE = Region("Val-d'Oise", "95", REGIONS.IDF, "Pontoise");
+const GUADELOUPE = Region("Guadeloupe", "971", REGIONS.GUADELOUPE, "Basse-Terre");
+const MARTINIQUE = Region("Martinique", "972", REGIONS.MARTINIQUE, "Fort-de-France");
+const GUYANE = Region("Guyane", "973", REGIONS.GUYANE, "Cayenne");
+const REUNION = Region("Réunion", "974", REGIONS.REUNION, "Saint-Denis");
+const MAYOTTE = Region("Mayotte", "976", REGIONS.MAYOTTE, "Dzaoudzi");

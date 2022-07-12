@@ -41,11 +41,12 @@ function setDrapeauTab(pays) {
 
 function setCapitaleTab(pays) {
   a = 0;
-  let tab = '<table id="answers"><tr class="row"><th>Capitales</th><th>Capitales</th><th>Capitales</th><th>Capitales</th></tr>';
+  let tab = '<table id="answers"><tr class="row"><th>Pays</th><th>Capitales</th><th>Pays</th><th>Capitales</th><th>Pays</th><th>Capitales</th><th>Pays</th><th>Capitales</th></tr>';
   for (let i = 0; i < Math.ceil(pays.length / 4); i++) {
     tab += '<tr class="row">';
     for (let j = 0; j < 4; j++) {
       try {
+        tab += '<td class="casePays">' + pays[a].name + "</td>";
         tab +=
           '<td class="case unselectable transparent">' + pays[a].capitale + "</td>";
         a++;
