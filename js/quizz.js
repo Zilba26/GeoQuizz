@@ -75,7 +75,8 @@ function autoValidation() {
   const reponse = document.getElementById("input_answer").value;
   if (localStorage.getItem("type") == "0") {
     for (let i = 0; i < paysTrouve.length; i++) {
-      if (compare(reponse, paysTrouve[i].name)) {
+      let alias = paysTrouve[i].options["alias"];
+      if (compare(reponse, paysTrouve[i].name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
         avancement++;
         document.getElementById("avancement").innerHTML =
           avancement + "/" + pays.length;
@@ -183,10 +184,6 @@ function compare(value, paysName) {
   paysName = paysName.replaceAll("-", " ");
   value = value.toLowerCase();
   paysName = paysName.toLowerCase();
-  if (paysName.startsWith("chi")) {
-    console.log(paysName);
-    console.log(value);
-  }
   return value == paysName;
 }
 
