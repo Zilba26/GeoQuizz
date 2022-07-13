@@ -60,6 +60,23 @@ function setCapitaleTab(pays) {
   return tab;
 }
 
+function setRegionTab(regions) {
+  a = 0;
+  let tab = '<table id="answers"><tr class="row"><th>Regions</th><th>Regions</th><th>Regions</th><th>Regions</th></tr>';
+  for (let i = 0; i < Math.ceil(regions.length / 4); i++) {
+    tab += '<tr class="row">';
+    for (let j = 0; j < 4; j++) {
+      if (regions[a] != undefined) {
+        tab += '<td class="case  unselectable transparent">' + regions[a] + "</td>";
+        a++;
+      }
+    }
+    tab += "</tr>";
+  }
+  tab += "</table>";
+  return tab;
+}
+
 const PAYS_MONDE_TAB = setPaysTab(PAYS);
 const PAYS_EUROPE_TAB = setPaysTab(PAYS_EUROPE);
 const PAYS_ASIE_TAB = setPaysTab(PAYS_ASIE);
@@ -80,3 +97,5 @@ const CAPITALES_ASIE_TAB = setCapitaleTab(PAYS_ASIE);
 const CAPITALES_AFRIQUE_TAB = setCapitaleTab(PAYS_AFRIQUE);
 const CAPITALES_AMERIQUE_TAB = setCapitaleTab(PAYS_AMERIQUE);
 const CAPITALES_OCEANIE_TAB = setCapitaleTab(PAYS_OCEANIE);
+
+const REGIONS_TAB = setRegionTab(REGIONS_LIST);

@@ -19,3 +19,16 @@ function startQuizz() {
 
   window.location.href = "quizz.html";
 }
+
+function startQuizz2() {
+  let boutons = document.getElementsByName("select-3");
+  let type;
+  for (let i = 0; i < boutons.length; i++) {
+    if (boutons[i].checked) {
+      type = i + 3;
+      localStorage.setItem("type", type);
+    }
+  }
+  localStorage.removeItem("endroit");
+  window.location.href = "quizz.html";
+}

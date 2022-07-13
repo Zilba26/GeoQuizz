@@ -57,6 +57,7 @@ input {
   flex-direction: row;
   width: 100%;
   padding: 0px 5px;
+  gap: 20px;
 }
 
 #last_country {
@@ -66,6 +67,8 @@ input {
 #answers {
   background-color: white;
   margin-bottom: 20px;
+  display: flex;
+  white-space: nowrap;
 }
 
 .case {

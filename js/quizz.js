@@ -10,6 +10,12 @@ function getType(nb) {
       return "Drapeaux ";
     case "2":
       return "Capitales ";
+    case "3":
+      return "Régions de France";
+    case "4":
+      return "Départements de France";
+    case "5":
+      return "Numéros des départements français";
     default:
       return "error";
   }
@@ -30,11 +36,11 @@ function getEndroit(nb) {
     case "5":
       return "d'Oceanie";
     default:
-      return "error";
+      return "";
   }
 }
 
-function getAnswers(endroit) {
+function getAnswers(endroit, type) {
   switch (endroit) {
     case "0":
       return PAYS;
@@ -49,7 +55,12 @@ function getAnswers(endroit) {
     case "5":
       return PAYS_OCEANIE;
     default:
-      return "error";
+      switch (type) {
+        case "3": return REGIONS_LIST;
+        case "4": return DEPARTEMENTS;
+        case "5": return DEPARTEMENTS;
+        default: return "error";
+      }
   }
 }
 
@@ -57,11 +68,11 @@ document.title =
   getType(localStorage.getItem("type")) +
   getEndroit(localStorage.getItem("endroit"));
 
-paysTrouve = getAnswers(localStorage.getItem("endroit"));
-const pays = [].concat(paysTrouve);
-document.getElementById("avancement").innerHTML = "0/" + paysTrouve.length;
+let reponsesTrouves = getAnswers(localStorage.getItem("endroit"), localStorage.getItem("type"));
+const reponses = [].concat(reponsesTrouves);
+document.getElementById("avancement").innerHTML = "0/" + reponsesTrouves.length;
 let avancement = 0;
-let selection = paysTrouve[0];
+let selection = reponsesTrouves[0];
 if (localStorage.getItem("type") == "1") {
   const flag = document.getElementById("flag");
   flag.src = selection.getDrapeau();
@@ -69,27 +80,29 @@ if (localStorage.getItem("type") == "1") {
   element.classList.add("selectable");
 }
 
+
 function autoValidation() {
   document.getElementById("registered_answer").style.display = "none";
   document.getElementById("bad_answer").style.display = "none";
   const reponse = document.getElementById("input_answer").value;
   if (localStorage.getItem("type") == "0") {
-    for (let i = 0; i < paysTrouve.length; i++) {
-      let alias = paysTrouve[i].options["alias"];
-      if (compare(reponse, paysTrouve[i].name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
+    for (let i = 0; i < reponsesTrouves.length; i++) {
+      let alias = reponsesTrouves[i].options["alias"];
+      if (compare(reponse, reponsesTrouves[i].name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
         avancement++;
         document.getElementById("avancement").innerHTML =
-          avancement + "/" + pays.length;
+          avancement + "/" + reponses.length;
         document.getElementById("input_answer").value = "";
         document.getElementById("last_country").innerHTML =
-          "Dernier pays trouvé: " + paysTrouve[i].name;
+          "Dernier pays trouvé: " + reponsesTrouves[i].name;
 
-        const index = pays.indexOf(paysTrouve[i]);
+        const index = reponses.indexOf(reponsesTrouves[i]);
         const element = document.getElementsByClassName("case")[index];
         element.classList.remove("unselectable");
         element.classList.remove("transparent");
+        element.style.color = "green";
 
-        paysTrouve.splice(i, 1);
+        reponsesTrouves.splice(i, 1);
         win();
         return;
       }
@@ -97,45 +110,68 @@ function autoValidation() {
   } else if (localStorage.getItem("type") == "1") {
     let alias = selection.options["alias"];
     if (compare(reponse, selection.name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
-      const i = paysTrouve.indexOf(selection);
+      const i = reponsesTrouves.indexOf(selection);
       avancement++;
       document.getElementById("avancement").innerHTML =
-        avancement + "/" + pays.length;
+        avancement + "/" + reponses.length;
       document.getElementById("input_answer").value = "";
       document.getElementById("last_country").innerHTML =
-        "Dernier pays trouvé: " + paysTrouve[i].name;
+        "Dernier pays trouvé: " + reponsesTrouves[i].name;
 
-      const index = pays.indexOf(paysTrouve[i]);
+      const index = reponses.indexOf(reponsesTrouves[i]);
       const element = document.getElementsByClassName("case")[index];
       element.classList.remove("unselectable");
       element.classList.remove("transparent");
       element.classList.remove("selectable");
+      element.style.color = "green";
 
       nextSelection(i + 1);
-      paysTrouve.splice(i, 1);
+      reponsesTrouves.splice(i, 1);
       win();
       return;
     }
   } else if (localStorage.getItem("type") == "2") {
-    for (let i = 0; i < paysTrouve.length; i++) {
-      if (compare(reponse, paysTrouve[i].capitale)) {
+    for (let i = 0; i < reponsesTrouves.length; i++) {
+      if (compare(reponse, reponsesTrouves[i].capitale)) {
         avancement++;
         document.getElementById("avancement").innerHTML =
-          avancement + "/" + pays.length;
+          avancement + "/" + reponses.length;
         document.getElementById("input_answer").value = "";
         document.getElementById("last_country").innerHTML =
           "Derniere capitale trouvé: " +
-          paysTrouve[i].capitale +
+          reponsesTrouves[i].capitale +
           " (" +
-          paysTrouve[i].name +
+          reponsesTrouves[i].name +
           ")";
 
-        const index = pays.indexOf(paysTrouve[i]);
+        const index = reponses.indexOf(reponsesTrouves[i]);
         const element = document.getElementsByClassName("case")[index];
         element.classList.remove("unselectable");
         element.classList.remove("transparent");
+        element.style.color = "green";
 
-        paysTrouve.splice(i, 1);
+        reponsesTrouves.splice(i, 1);
+        win();
+        return;
+      }
+    }
+  } else if (localStorage.getItem("type") == "3") {
+    for (let i = 0; i < reponsesTrouves.length; i++) {
+      if (compare(reponse, reponsesTrouves[i])) {
+        avancement++;
+        document.getElementById("avancement").innerHTML =
+          avancement + "/" + reponse.length;
+        document.getElementById("input_answer").value = "";
+        document.getElementById("last_country").innerHTML =
+          "Dernière région trouvé: " + reponsesTrouves[i];
+
+        const index = reponses.indexOf(reponsesTrouves[i]);
+        const element = document.getElementsByClassName("case")[index];
+        element.classList.remove("unselectable");
+        element.classList.remove("transparent");
+        element.style.color = "green";
+
+        reponsesTrouves.splice(i, 1);
         win();
         return;
       }
@@ -148,8 +184,8 @@ function validation() {
   document.getElementById("bad_answer").style.display = "none";
   const reponse = document.getElementById("input_answer").value;
   if (localStorage.getItem("type") == "0") {
-    for (let i = 0; i < pays.length; i++) {
-      if (reponse.toLowerCase() == pays[i].name.toLowerCase()) {
+    for (let i = 0; i < reponses.length; i++) {
+      if (compare(reponse, reponses[i].name)) {
         document.getElementById("registered_answer").style.display = "block";
         return;
       }
@@ -158,8 +194,16 @@ function validation() {
   } else if (localStorage.getItem("type") == "1") {
     document.getElementById("bad_answer").style.display = "block";
   } else if (localStorage.getItem("type") == "2") {
-    for (let i = 0; i < pays.length; i++) {
-      if (reponse.toLowerCase() == pays[i].capitale.toLowerCase()) {
+    for (let i = 0; i < reponses.length; i++) {
+      if (compare(reponse, reponses[i].capitale)) {
+        document.getElementById("registered_answer").style.display = "block";
+        return;
+      }
+    }
+    document.getElementById("bad_answer").style.display = "block";
+  } else if (localStorage.getItem("type") == "3") {
+    for (let i = 0; i < reponses.length; i++) {
+      if (compare(reponse, reponses[i])) {
         document.getElementById("registered_answer").style.display = "block";
         return;
       }
@@ -169,7 +213,7 @@ function validation() {
 }
 
 function win() {
-  if (paysTrouve.length == 0) {
+  if (reponsesTrouves.length == 0) {
     document.querySelector("section").innerHTML =
       '<img src="img/win.gif" style="width: 25%; heigth: auto;">';
     document.querySelector("body").style.height = "100%";
@@ -195,24 +239,24 @@ input_answer.addEventListener("keyup", function (event) {
   }
   if (localStorage.getItem("type") == "1") {
     if (event.keyCode === 40) {
-      nextSelection(paysTrouve.indexOf(selection) + 1);
+      nextSelection(reponsesTrouves.indexOf(selection) + 1);
     }
     if (event.keyCode === 38) {
-      previousSelection(paysTrouve.indexOf(selection) - 1);
+      previousSelection(reponsesTrouves.indexOf(selection) - 1);
     }
   }
 });
 
 function nextSelection(i) {
-  const index = pays.indexOf(paysTrouve[i - 1]);
+  const index = reponses.indexOf(reponsesTrouves[i - 1]);
   const element = document.getElementsByClassName("case")[index];
   element.classList.remove("selectable");
-  if (i == paysTrouve.length) {
-    selection = paysTrouve[0];
+  if (i == reponsesTrouves.length) {
+    selection = reponsesTrouves[0];
   } else {
-    selection = paysTrouve[i];
+    selection = reponsesTrouves[i];
   }
-  const j = pays.indexOf(selection);
+  const j = reponses.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
@@ -220,15 +264,15 @@ function nextSelection(i) {
 }
 
 function previousSelection(i) {
-  const index = pays.indexOf(paysTrouve[i + 1]);
+  const index = reponses.indexOf(reponsesTrouves[i + 1]);
   const element = document.getElementsByClassName("case")[index];
   element.classList.remove("selectable");
   if (i == -1) {
-    selection = paysTrouve[paysTrouve.length - 1];
+    selection = reponsesTrouves[reponsesTrouves.length - 1];
   } else {
-    selection = paysTrouve[i];
+    selection = reponsesTrouves[i];
   }
-  const j = pays.indexOf(selection);
+  const j = reponses.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
@@ -236,11 +280,11 @@ function previousSelection(i) {
 }
 
 function setSelection(i) {
-  const index = pays.indexOf(selection);
+  const index = reponses.indexOf(selection);
   const element = document.getElementsByClassName("case")[index];
   element.classList.remove("selectable");
-  selection = pays[i];
-  const j = pays.indexOf(selection);
+  selection = reponses[i];
+  const j = reponses.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
   document.getElementById("flag").src = selection.getDrapeau();
