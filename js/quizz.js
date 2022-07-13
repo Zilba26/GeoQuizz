@@ -79,6 +79,10 @@ if (localStorage.getItem("type") == "1") {
   const element = document.getElementsByClassName("case")[0];
   element.classList.add("selectable");
 }
+if (localStorage.getItem("type") == "5") {
+  const element = document.getElementsByClassName("case")[0];
+  element.classList.add("selectable");
+}
 
 
 function autoValidation() {
@@ -203,6 +207,29 @@ function autoValidation() {
         }
       }
       break;
+    case "5":
+      if (compare(reponse, selection.name)) {
+        const i = reponsesTrouves.indexOf(selection);
+        avancement++;
+        document.getElementById("avancement").innerHTML =
+          avancement + "/" + reponses.length;
+        document.getElementById("input_answer").value = "";
+        document.getElementById("last_country").innerHTML =
+          "Dernier département trouvé: " + reponsesTrouves[i].name;
+
+        const index = reponses.indexOf(reponsesTrouves[i]);
+        const element = document.getElementsByClassName("case")[index];
+        element.classList.remove("unselectable");
+        element.classList.remove("transparent");
+        element.classList.remove("selectable");
+        element.style.color = "green";
+
+        nextSelection(i + 1);
+        reponsesTrouves.splice(i, 1);
+        win();
+        return;
+      }
+      break;
   }
 }
 
@@ -250,6 +277,9 @@ function validation() {
       }
       document.getElementById("bad_answer").style.display = "block";
       break;
+    case "5":
+      document.getElementById("bad_answer").style.display = "block";
+      break;
   }
 }
 
@@ -278,7 +308,7 @@ input_answer.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     validation();
   }
-  if (localStorage.getItem("type") == "1") {
+  if (localStorage.getItem("type") == "1" || localStorage.getItem("type") == "5") {
     if (event.keyCode === 40) {
       nextSelection(reponsesTrouves.indexOf(selection) + 1);
     }
@@ -300,7 +330,9 @@ function nextSelection(i) {
   const j = reponses.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
-  document.getElementById("flag").src = selection.getDrapeau();
+  if (localStorage.getItem("type") == "1") {
+    document.getElementById("flag").src = selection.getDrapeau();
+  }
   document.getElementById("input_answer").value = "";
 }
 
@@ -328,7 +360,9 @@ function setSelection(i) {
   const j = reponses.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
-  document.getElementById("flag").src = selection.getDrapeau();
+  if (localStorage.getItem("type") == "1") {
+    document.getElementById("flag").src = selection.getDrapeau();
+  }
   document.getElementById("input_answer").value = "";
   document.getElementById("input_answer").focus();
 }

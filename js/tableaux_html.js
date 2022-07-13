@@ -103,8 +103,8 @@ function setNumerosdepartementsTab(departements) {
     tab += '<tr class="row">';
     for (let j = 0; j < 4; j++) {
       try {
-        tab += '<td class="case">' + departements[a].numero + "</td>";
-        tab += '<td class="case unselectable transparent">' + departements[a].name + ")</td>";
+        tab += '<td class="caseNumero">' + departements[a].numero + "</td>";
+        tab += '<td class="case unselectable transparent" onclick="setSelection(' + (4*i+j) + ')" style="white-space: nowrap;cursor: pointer;">' + departements[a].name + "</td>";
         a++;
       } catch {
         

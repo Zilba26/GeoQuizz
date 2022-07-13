@@ -91,7 +91,7 @@ th {
 td {
   background-color: #ced4e5;
 }
-th, .case, .casePays {
+th, .case, .casePays, .caseNumero {
   padding: 0.7em;
   text-align: center;
 }
