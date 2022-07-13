@@ -348,7 +348,9 @@ function previousSelection(i) {
   const j = reponses.indexOf(selection);
   const element2 = document.getElementsByClassName("case")[j];
   element2.classList.add("selectable");
-  document.getElementById("flag").src = selection.getDrapeau();
+  if (localStorage.getItem("type") == "1") {
+    document.getElementById("flag").src = selection.getDrapeau();
+  }
   document.getElementById("input_answer").value = "";
 }
 

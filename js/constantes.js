@@ -260,7 +260,7 @@ function shuffleArray(array) {
     return array;
 }
 
-if (localStorage.getItem("type") == "1") {
+//if (localStorage.getItem("type") == "1") {
     PAYS_EUROPE = shuffleArray(PAYS_EUROPE);
     PAYS_ASIE = shuffleArray(PAYS_ASIE);
     PAYS_AFRIQUE = shuffleArray(PAYS_AFRIQUE);
@@ -268,7 +268,7 @@ if (localStorage.getItem("type") == "1") {
     PAYS_AMERIQUE_DU_NORD = shuffleArray(PAYS_AMERIQUE_DU_NORD);
     PAYS_AMERIQUE_DU_SUD = shuffleArray(PAYS_AMERIQUE_DU_SUD);
     PAYS_OCEANIE = shuffleArray(PAYS_OCEANIE);
-}
+//}
 
 class Departement {
     constructor(name, numero, region, prefecture, options) {
@@ -301,12 +301,14 @@ const REGIONS = {
     MARTINIQUE: "Martinique"
 }
 
-const REGIONS_LIST = [
+let REGIONS_LIST = [
     REGIONS.AUVERGNE, REGIONS.BOURGOGNE, REGIONS.BRETAGNE, REGIONS.CENTRE, REGIONS.CORSE, REGIONS.GRAND_EST,
     REGIONS.HAUT_DE_FRANCE, REGIONS.IDF, REGIONS.NORMANDIE, REGIONS.NOUVELLE_AQUITAINE, REGIONS.OCCITANIE,
     REGIONS.PAYS_DE_LA_LOIRE, REGIONS.PACA, REGIONS.GUADELOUPE, REGIONS.GUYANE, REGIONS.REUNION, REGIONS.MAYOTTE,
     REGIONS.MARTINIQUE
-]
+];
+
+REGIONS_LIST = shuffleArray(REGIONS_LIST);
 
 const AIN = new Departement("Ain", "01", REGIONS.AUVERGNE, "Bourg-en-Bresse");
 const AISNE = new Departement("Aisne", "02", REGIONS.HAUT_DE_FRANCE, "Laon");
@@ -410,7 +412,7 @@ const GUYANE = new Departement("Guyane", "973", REGIONS.GUYANE, "Cayenne");
 const REUNION = new Departement("Réunion", "974", REGIONS.REUNION, "Saint-Denis");
 const MAYOTTE = new Departement("Mayotte", "976", REGIONS.MAYOTTE, "Dzaoudzi");
 
-const DEPARTEMENTS = [
+let DEPARTEMENTS = [
     AIN, AISNE, ALLIER, ALPES_DE_HAUTE_PROVENCE, HAUTES_ALPES, ALPES_MARITIMES, ARDECHE, ARDENNES, ARIEGE,
     AUBE, AUDE, AVEYRON, BOUCHES_DU_RHONE, CALVADOS, CHARENTE, CHARENTE_MARITIME, CHER, CORREZE, CORSE_DU_SUD,
     HAUTE_CORSE, COTES_D_OR, COTES_D_ARMOR, CREUSE, DORDOGNE, DOUBS, DROME, EURE, EURE_ET_LOIR, FINISTERE,
@@ -423,3 +425,5 @@ const DEPARTEMENTS = [
     HAUTE_VIENNE, VOSGES, YONNE, TERRITOIRE_DE_BELFORT, ESSONNE, HAUTS_DE_SEINE, SEINE_SUR_MARNE, VAL_DE_MARNE,
     VAL_DOISE, GUADELOUPE, MARTINIQUE, GUYANE, REUNION, MAYOTTE
 ];
+
+DEPARTEMENTS = shuffleArray(DEPARTEMENTS);
