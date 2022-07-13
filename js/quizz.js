@@ -85,10 +85,34 @@ function autoValidation() {
   document.getElementById("registered_answer").style.display = "none";
   document.getElementById("bad_answer").style.display = "none";
   const reponse = document.getElementById("input_answer").value;
-  if (localStorage.getItem("type") == "0") {
-    for (let i = 0; i < reponsesTrouves.length; i++) {
-      let alias = reponsesTrouves[i].options["alias"];
-      if (compare(reponse, reponsesTrouves[i].name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
+  switch (localStorage.getItem("type")) {
+    case "0":
+      for (let i = 0; i < reponsesTrouves.length; i++) {
+        let alias = reponsesTrouves[i].options["alias"];
+        if (compare(reponse, reponsesTrouves[i].name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
+          avancement++;
+          document.getElementById("avancement").innerHTML =
+            avancement + "/" + reponses.length;
+          document.getElementById("input_answer").value = "";
+          document.getElementById("last_country").innerHTML =
+            "Dernier pays trouvé: " + reponsesTrouves[i].name;
+
+          const index = reponses.indexOf(reponsesTrouves[i]);
+          const element = document.getElementsByClassName("case")[index];
+          element.classList.remove("unselectable");
+          element.classList.remove("transparent");
+          element.style.color = "green";
+
+          reponsesTrouves.splice(i, 1);
+          win();
+          return;
+        }
+      }
+      break;
+    case "1":
+      let alias = selection.options["alias"];
+      if (compare(reponse, selection.name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
+        const i = reponsesTrouves.indexOf(selection);
         avancement++;
         document.getElementById("avancement").innerHTML =
           avancement + "/" + reponses.length;
@@ -100,82 +124,85 @@ function autoValidation() {
         const element = document.getElementsByClassName("case")[index];
         element.classList.remove("unselectable");
         element.classList.remove("transparent");
+        element.classList.remove("selectable");
         element.style.color = "green";
 
+        nextSelection(i + 1);
         reponsesTrouves.splice(i, 1);
         win();
         return;
       }
-    }
-  } else if (localStorage.getItem("type") == "1") {
-    let alias = selection.options["alias"];
-    if (compare(reponse, selection.name) || (alias != undefined && alias.some((elt) => compare(reponse, elt)))) {
-      const i = reponsesTrouves.indexOf(selection);
-      avancement++;
-      document.getElementById("avancement").innerHTML =
-        avancement + "/" + reponses.length;
-      document.getElementById("input_answer").value = "";
-      document.getElementById("last_country").innerHTML =
-        "Dernier pays trouvé: " + reponsesTrouves[i].name;
+      break;
+    case "2":
+      for (let i = 0; i < reponsesTrouves.length; i++) {
+        if (compare(reponse, reponsesTrouves[i].capitale)) {
+          avancement++;
+          document.getElementById("avancement").innerHTML =
+            avancement + "/" + reponses.length;
+          document.getElementById("input_answer").value = "";
+          document.getElementById("last_country").innerHTML =
+            "Derniere capitale trouvé: " +
+            reponsesTrouves[i].capitale +
+            " (" +
+            reponsesTrouves[i].name +
+            ")";
 
-      const index = reponses.indexOf(reponsesTrouves[i]);
-      const element = document.getElementsByClassName("case")[index];
-      element.classList.remove("unselectable");
-      element.classList.remove("transparent");
-      element.classList.remove("selectable");
-      element.style.color = "green";
+          const index = reponses.indexOf(reponsesTrouves[i]);
+          const element = document.getElementsByClassName("case")[index];
+          element.classList.remove("unselectable");
+          element.classList.remove("transparent");
+          element.style.color = "green";
 
-      nextSelection(i + 1);
-      reponsesTrouves.splice(i, 1);
-      win();
-      return;
-    }
-  } else if (localStorage.getItem("type") == "2") {
-    for (let i = 0; i < reponsesTrouves.length; i++) {
-      if (compare(reponse, reponsesTrouves[i].capitale)) {
-        avancement++;
-        document.getElementById("avancement").innerHTML =
-          avancement + "/" + reponses.length;
-        document.getElementById("input_answer").value = "";
-        document.getElementById("last_country").innerHTML =
-          "Derniere capitale trouvé: " +
-          reponsesTrouves[i].capitale +
-          " (" +
-          reponsesTrouves[i].name +
-          ")";
-
-        const index = reponses.indexOf(reponsesTrouves[i]);
-        const element = document.getElementsByClassName("case")[index];
-        element.classList.remove("unselectable");
-        element.classList.remove("transparent");
-        element.style.color = "green";
-
-        reponsesTrouves.splice(i, 1);
-        win();
-        return;
+          reponsesTrouves.splice(i, 1);
+          win();
+          return;
+        }
       }
-    }
-  } else if (localStorage.getItem("type") == "3") {
-    for (let i = 0; i < reponsesTrouves.length; i++) {
-      if (compare(reponse, reponsesTrouves[i])) {
-        avancement++;
-        document.getElementById("avancement").innerHTML =
-          avancement + "/" + reponse.length;
-        document.getElementById("input_answer").value = "";
-        document.getElementById("last_country").innerHTML =
-          "Dernière région trouvé: " + reponsesTrouves[i];
+      break;
+    case "3":
+      for (let i = 0; i < reponsesTrouves.length; i++) {
+        if (compare(reponse, reponsesTrouves[i])) {
+          avancement++;
+          document.getElementById("avancement").innerHTML =
+            avancement + "/" + reponse.length;
+          document.getElementById("input_answer").value = "";
+          document.getElementById("last_country").innerHTML =
+            "Dernière région trouvé: " + reponsesTrouves[i];
 
-        const index = reponses.indexOf(reponsesTrouves[i]);
-        const element = document.getElementsByClassName("case")[index];
-        element.classList.remove("unselectable");
-        element.classList.remove("transparent");
-        element.style.color = "green";
+          const index = reponses.indexOf(reponsesTrouves[i]);
+          const element = document.getElementsByClassName("case")[index];
+          element.classList.remove("unselectable");
+          element.classList.remove("transparent");
+          element.style.color = "green";
 
-        reponsesTrouves.splice(i, 1);
-        win();
-        return;
+          reponsesTrouves.splice(i, 1);
+          win();
+          return;
+        }
       }
-    }
+      break;
+    case "4":
+      for (let i = 0; i < reponsesTrouves.length; i++) {
+        if (compare(reponse, reponsesTrouves[i].name)) {
+          avancement++;
+          document.getElementById("avancement").innerHTML =
+            avancement + "/" + reponses.length;
+          document.getElementById("input_answer").value = "";
+          document.getElementById("last_country").innerHTML =
+            "Dernier département trouvé: " + reponsesTrouves[i].name;
+
+          const index = reponses.indexOf(reponsesTrouves[i]);
+          const element = document.getElementsByClassName("case")[index];
+          element.classList.remove("unselectable");
+          element.classList.remove("transparent");
+          element.style.color = "green";
+
+          reponsesTrouves.splice(i, 1);
+          win();
+          return;
+        }
+      }
+      break;
   }
 }
 
@@ -183,32 +210,46 @@ function validation() {
   document.getElementById("registered_answer").style.display = "none";
   document.getElementById("bad_answer").style.display = "none";
   const reponse = document.getElementById("input_answer").value;
-  if (localStorage.getItem("type") == "0") {
-    for (let i = 0; i < reponses.length; i++) {
-      if (compare(reponse, reponses[i].name)) {
-        document.getElementById("registered_answer").style.display = "block";
-        return;
+  switch (localStorage.getItem("type")) {
+    case "0":
+      for (let i = 0; i < reponses.length; i++) {
+        if (compare(reponse, reponses[i].name)) {
+          document.getElementById("registered_answer").style.display = "block";
+          return;
+        }
       }
-    }
-    document.getElementById("bad_answer").style.display = "block";
-  } else if (localStorage.getItem("type") == "1") {
-    document.getElementById("bad_answer").style.display = "block";
-  } else if (localStorage.getItem("type") == "2") {
-    for (let i = 0; i < reponses.length; i++) {
-      if (compare(reponse, reponses[i].capitale)) {
-        document.getElementById("registered_answer").style.display = "block";
-        return;
+      document.getElementById("bad_answer").style.display = "block";
+      break;
+    case "1":
+      document.getElementById("bad_answer").style.display = "block";
+      break;
+    case "2":
+      for (let i = 0; i < reponses.length; i++) {
+        if (compare(reponse, reponses[i].capitale)) {
+          document.getElementById("registered_answer").style.display = "block";
+          return;
+        }
       }
-    }
-    document.getElementById("bad_answer").style.display = "block";
-  } else if (localStorage.getItem("type") == "3") {
-    for (let i = 0; i < reponses.length; i++) {
-      if (compare(reponse, reponses[i])) {
-        document.getElementById("registered_answer").style.display = "block";
-        return;
+      document.getElementById("bad_answer").style.display = "block";
+      break;
+    case "3":
+      for (let i = 0; i < reponses.length; i++) {
+        if (compare(reponse, reponses[i])) {
+          document.getElementById("registered_answer").style.display = "block";
+          return;
+        }
       }
-    }
-    document.getElementById("bad_answer").style.display = "block";
+      document.getElementById("bad_answer").style.display = "block";
+      break;
+    case "4":
+      for (let i = 0; i < reponses.length; i++) {
+        if (compare(reponse, reponses[i].name)) {
+          document.getElementById("registered_answer").style.display = "block";
+          return;
+        }
+      }
+      document.getElementById("bad_answer").style.display = "block";
+      break;
   }
 }
 
