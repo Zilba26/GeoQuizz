@@ -45,10 +45,14 @@ section {
   flex-direction: column;
   place-items: end;
   gap: 5px;
+  z-index: 20;
 }
 
+.dot {
+  z-index: 10;
+}
 #informations_content {
-  background-color: rgba(255, 255, 255, 0.736);
+  background-color: rgb(231, 228, 228);
   border-radius: 8px;
   padding: 5px;
   display: none;
